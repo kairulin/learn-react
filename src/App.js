@@ -22,13 +22,6 @@ function App() {
     localStorage.setItem(LOCAL_STORAGE_KEY,JSON.stringify(todos))
   },[todos])
 
-  // useEffect(()=>{
-  //   const todos = JSON.parse(localStorage.getItem('todos'))
-  //   if (todos){
-  //     setTodos(todos)
-  //   }
-  // })
-
   function toggleTodo(id){
     const newTodos = [...todos]
     const todo = newTodos.find(todo => todo.id === id)
@@ -45,13 +38,19 @@ function App() {
     todoNameRef.current.value = null
   }
 
+  
+  function handleClearTodos(){
+    const newTodos = todos.filter(todo => !todo.complete)
+    setTodos(newTodos)
+  }
+
   return (
     <>
       <TodoList todos={todos} toggleTodo={toggleTodo}/>
       <input ref={todoNameRef} type="text" />
       <button onClick={handleAddTodo}>Add Todo</button>
-      <button>Clear Completed Todos</button>
-      <div>0 left to do</div>
+      <button onClick={handleClearTodos}>Clear Completed Todos</button>
+      <div>{todos.filter(todo => !todo.complete).length} left to do</div>
     </>
   )
 }
