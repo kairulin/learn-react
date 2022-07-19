@@ -4,7 +4,7 @@ export default function ({ todo }) {
     return (
         <div>
             <label>
-            <input type="checkbox" checked={todo.complete}></input>
+            {/* <input type="checkbox" checked={todo.complete}></input> */}
             {todo.name}
 
             </label>
